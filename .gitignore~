@@ -104,5 +104,8 @@ venv.bak/
 .mypy_cache/
 
 # Word documents
-*.docx
+*.docx*
+
+# Python backups
+*.py~
 
