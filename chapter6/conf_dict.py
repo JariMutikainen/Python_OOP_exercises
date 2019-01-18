@@ -4,13 +4,20 @@ from sys import exit
 from os import access, W_OK
 
 class ConfigKeyError(Exception):
-     pass
+    
+    def __init__(self, cd_object, missing_key):
+        self.missing_key = missing_key
+        self.keys_avail = ()
+        for k in cd_object.keys():
+            self.keys_avail += (k,)
 
+    def __str__(self):
+        return(f'Key "{self.missing_key}" not found.\n'
+               f'Available keys: {self.keys_avail}') 
 
 class ConfigDict(dict):
 
     def __init__(self, filename):
-        #super().__init__()
         self.filename = filename
         # Raise an exception if the file is not writeable.
         if not access(self.filename, W_OK):
@@ -36,13 +43,10 @@ class ConfigDict(dict):
                 fp.write(f'{k}={v}\n')
 
     def __getitem__(self, key):
-        if key not in self.keys():
-            print(f'\nKey {key} not found. The keys available are:\n')
-            for item in self.keys():
-                print('\t', item)
-            print()
-            raise ConfigKeyError 
-        return super().__getitem__(key)
+        try:
+            return super().__getitem__(key)
+        except KeyError:
+            raise ConfigKeyError(self, key)
 
     def __repr__(self):
         big_str = '\nConfigDict with the following contents:\n\n'
@@ -53,8 +57,8 @@ class ConfigDict(dict):
         
 # Testing
 cd = ConfigDict('data.txt')
-print(cd)
+#print(cd)
 #cd['Jari'] = 'Mutikainen'
 #print(cd)
-print(cd['Jari'])
+#print(cd['Jari'])
 print(cd['Kari'])
