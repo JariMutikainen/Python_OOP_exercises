@@ -1,0 +1,9 @@
+{
+    "sql_query": "SELECT this FROM that WHERE condition",
+    "email_to": "me@mydomain.com",
+    "num_retries": "5",
+    "Jari": "Mutikainen",
+    "New": "Entry",
+    "number": "7",
+    "is_logic": "True"
+}
