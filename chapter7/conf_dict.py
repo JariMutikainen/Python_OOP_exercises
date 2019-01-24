@@ -54,12 +54,12 @@ class ConfigDict(dict):
             big_str += f'\t{k} = {v}\n'
         return big_str
 
-        
-# Testing
-#cd = ConfigDict('../chapter6/data.txt')
-cd = ConfigDict('./data.json')
-print(cd)
-#cd["is_logic"] = True
-#print(cd)
-#print(cd['Jari'])
-#print(cd['Kari'])
+if __name__ == '__main__':        
+    # Testing
+    #cd = ConfigDict('../chapter6/data.txt')
+    cd = ConfigDict('./data.json')
+    print(cd)
+    #cd["is_logic"] = True
+    #print(cd)
+    #print(cd['Jari'])
+    #print(cd['Kari'])
